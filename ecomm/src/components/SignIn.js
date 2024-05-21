@@ -20,11 +20,11 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_LOGIN}`, user)
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_SERVER}login`, user)
       // console.log(res);
       navigate('/cart')
     } catch (e) {
-      // console.log(e.code)
+      console.log(e.code)
       if (e.code === "ERR_NETWORK") {
         Swal.fire({icon:"warning",title:"Backend not connected"})
       } else {

@@ -4,14 +4,27 @@ require('./db/db')
 require('dotenv').config()
 const cors = require('cors');
 const bodyparser = require('body-parser');
-const userSchema = require('./modals/schema')
+const { userSchema, product } = require('./modals/schema')
 const stripe = require("stripe")(`${process.env.STRIPE_KEY}`)
+
 
 const Port = process.env.DEV_PORT || 4006
 app.use(express.json());
 app.use(cors());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
+
+app.get('/', async (req, res) => {
+    try {
+        const data = await product.find()
+        // console.log(data);
+        res.status(200).send(data)
+    } catch (err) {
+        // console.log(err)
+        res.status(401).send("failed to load")
+    }
+})
+
 
 app.post('/login', async (req, res) => {
     const username = req.body.username;
@@ -40,7 +53,7 @@ app.post('/create', async (req, res) => {
             console.log('Sign Up completed')
             res.status(201).send('Sign Up completed')
         }).catch((e) => {
-            // console.log(`already exist`)
+            // console.log(e)
             res.status(403).send("already exist")
         })
     } catch (e) {

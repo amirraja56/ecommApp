@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { remove,increment,decrement } from '../store/cartSlice';
+import { remove, increment, decrement } from '../store/cartSlice';
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
 import "./cart.css"
@@ -10,22 +10,22 @@ export default function Cart() {
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const products = useSelector((state) => state.cart)
-  const price = products.map((item) => item.price);
-  const totalSum = price.reduce((accumulator, currentValue) => accumulator + currentValue , 0);
+  const price = products.map((item) => item.price*item.quantity);
+  const totalSum = price.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
   const handleRemove = (product) => {
     dispatch(remove(product));
     Swal.fire("Product removed");
   };
 
-const incrementQuantity=(id)=>{
+  const incrementQuantity = (id) => {
+    dispatch(increment(id))
+  };
 
-  dispatch(increment(id))
-}
-const decrementQuantity=(id)=>{
-  // console.log(item)
-  dispatch(decrement(id))
-}
+  const decrementQuantity = (id) => {
+    // console.log(item)
+    dispatch(decrement(id))
+  };
 
   const handleCheckout = (e) => {
     e.preventDefault();
@@ -62,11 +62,11 @@ const decrementQuantity=(id)=>{
                     <div className="row">{product.title}</div>
                   </div>
                   <div className="col">
-                    <a type='button' onClick={()=>{decrementQuantity(product.id)}}>-</a>
-                    <a href="#" className="border">1</a>
-                    <a type='button' onClick={()=>{incrementQuantity(product.id)}}>+</a>
+                    <a type='button' onClick={() => { decrementQuantity(product.id) }}>-&emsp;</a>
+                    <a className="border">{product.quantity}</a>
+                    <a type='button' onClick={() => { incrementQuantity(product.id) }}>&emsp;+</a>
                   </div>
-                  <div className="col" >&#8360; {product.price} <span className="close">
+                  <div className="col" >&#8360; {product.price*product.quantity} <span className="close">
                     <button onClick={() => handleRemove(product.id)} className="btn btn-success">remove</button>
                   </span></div>
                 </div>

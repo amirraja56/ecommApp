@@ -20,7 +20,7 @@ export default function Checkout() {
     const headers = {
       "Content-Type": "application/json"
     }
-    const response = await fetch(`${process.env.REACT_APP_CHECKOUT_FETCH}`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}checkout`, {
       method: "POST",
       headers: headers,
       body: JSON.stringify(body)

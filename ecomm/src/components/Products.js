@@ -53,9 +53,12 @@ export default function Products() {
             <img src={product.image} className="card-img-top " style={{ height: "8rem" }} alt="..." />
             <div className="card-body p-2 d-flex flex-column">
               <h5 className="card-title mt-1" style={{ fontSize: "12px" }}>{product.title.slice(0, 50)}</h5>
-              {/* <p className="card-text">{product.description} </p> */}
+              {/* <p className="card-text">{product.description} </p> */}                {/*  display: flex;
+                                                                           justify-content: flex-end;
+                                                                          align-items: flex-end;
+                                                                               position: fixed; */}
               <h4 className='cart-text-bold mt-0'>&#8360; {product.price}</h4>
-              <button onClick={() => handleAdd(product)} className="btn btn-success" style={{ fontSize: "15px" }}>Add to Cart</button>
+              <button onClick={() => handleAdd(product)} className="btn btn-success" style={{position:"absolute", fontSize: "15px", marginTop: "100px",marginLeft:"8px" }}>Add to Cart</button>
             </div>
           </div>
         ))}

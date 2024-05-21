@@ -14,13 +14,13 @@ const cartSlice = createSlice({
         increment(state, action) {
             const item = state.find(item => item.id === action.payload);
             if (item) {        
-                item.rating.count += 1;
+                item.quantity += 1;
             }
         },
         decrement: (state, action) => {
             const item = state.find(item => item.id === action.payload);
-            if (item && item.id > 0) {
-                item.rating.count -= 1;
+            if (item && item.quantity > 1) {
+                item.quantity -= 1;
             }
         },
     },

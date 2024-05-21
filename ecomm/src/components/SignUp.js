@@ -22,7 +22,7 @@ export default function SignUp() {
     const cpass = input.cpassword;
     try {
       if (pass === cpass) {
-        const res = await axios.post(`${process.env.REACT_APP_SIGNUP}`, input)
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_SERVER}create`, input)
         // console.log(res)
         Swal.fire({
           icon: "success",
