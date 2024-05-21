@@ -1,7 +1,7 @@
 const mongoose= require('mongoose');
 
-// const url="mongodb://127.0.0.1/ecommerce";
-const url="mongodb+srv://amirraja56:raza@cluster0.vjl3pqj.mongodb.net/students?retryWrites=true&w=majority&appName=Cluster0";
+const url="mongodb://127.0.0.1/students";
+
 mongoose.connect(url).then(()=>{
     console.log('DataBase connected');
 }).catch((err)=>{

@@ -20,7 +20,7 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BACKEND_SERVER}login`, user)
+      const res = await axios.post(`${process.env.REACT_APP_LOGIN}`, user)
       // console.log(res);
       navigate('/cart')
     } catch (e) {
